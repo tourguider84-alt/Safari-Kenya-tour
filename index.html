@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Global Booking</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;font-family:'Poppins',Arial,sans-serif}
+body{margin:0;background:#f0f4ff}
+.hero{
+background: linear-gradient(rgba(10,25,49,0.9), rgba(10,25,49,0.8)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920');
+background-size:cover;padding:70px 20px 100px;text-align:center;color:#fff;
+}
+.hero h1{font-size:42px;margin:0}.hero h1 span{color:#ffc300}
+.prices{display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px;margin:-60px auto 25px;max-width:900px;padding:0 15px}
+.price-card{background:#fff;border-radius:18px;padding:22px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.15);border:2px solid transparent;transition:0.3s}
+.price-card.popular{border-color:#ffc300;transform:scale(1.05);position:relative}
+.price-card.popular::before{content:"MOST POPULAR";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#ffc300;color:#000;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px}
+.price-card h3{margin:0;color:#0a1931}.price-card h2{font-size:32px;color:#0a1931;margin:10px 0}.price-card h2 small{font-size:14px;color:#666}
+.price-card ul{list-style:none;padding:0;text-align:left;font-size:13px;color:#444}
+.price-card ul li{margin:6px 0} .price-card ul li::before{content:"✅ "}
+.container{max-width:850px;margin:0 auto 30px;background:#fff;border-radius:20px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,0.1)}
+input,select{width:100%;padding:13px;border:1.5px solid #ddd;border-radius:10px;margin-top:6px}
+.btn{width:100%;padding:14px;border:none;border-radius:12px;font-weight:700;cursor:pointer;margin-top:10px}
+.btn-gold{background:#0a1931;color:#fff}.btn-gold:hover{background:#ffc300;color:#000}
+.btn-pay{background:#ffc300}.btn-paypal{background:#0070ba;color:#fff}
+.whatsapp-float{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;padding:15px 24px;border-radius:50px;text-decoration:none;font-weight:700;box-shadow:0 8px 25px rgba(37,211,102,0.6);z-index:999}
+@media(max-width:700px){.prices{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<h1>Premium <span>Global</span> Service</h1>
+<p>Best Prices for International Clients - Trusted Worldwide</p>
+</div>
+
+<div class="prices">
+<div class="price-card">
+<h3>Basic</h3><h2>$29 <small>/ start</small></h2>
+<ul><li>Consultation</li><li>30 Minutes Call</li><li>WhatsApp Support</li></ul>
+<button class="btn btn-gold" onclick="selectPrice(29,'Basic')">Choose $29</button>
+</div>
+<div class="price-card popular">
+<h3>Standard</h3><h2>$79 <small>/ start</small></h2>
+<ul><li>Full Service</li><li>Priority Support</li><li>Fast Delivery</li><li>Best Value</li></ul>
+<button class="btn btn-pay" onclick="selectPrice(79,'Standard')">Choose $79</button>
+</div>
+<div class="price-card">
+<h3>Premium VIP</h3><h2>$149 <small>/ start</small></h2>
+<ul><li>VIP Premium</li><li>Unlimited Revisions</li><li>24/7 Support</li><li>For Abroad Clients</li></ul>
+<button class="btn btn-gold" onclick="selectPrice(149,'Premium VIP')">Choose $149</button>
+</div>
+</div>
+
+<div class="container">
+<h2 style="text-align:center;color:#0a1931;margin-top:0">Book Now - <span id="selectedPrice">$79</span></h2>
+<input type="text" id="name" placeholder="Your Full Name">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<input type="tel" placeholder="Your WhatsApp + Country">
+<input type="date" id="date">
+</div>
+<select id="serviceDisplay"><option>Basic - $29</option><option selected>Standard - $79</option><option>Premium VIP - $149</option></select>
+
+<button class="btn btn-pay" onclick="window.open('https://wa.me/254788245106?text=I want to pay '+document.getElementById('selectedPrice').innerText,'_blank')">💳 PAY WITH M-PESA - <span class="p">0788245106</span></button>
+<button class="btn btn-paypal" onclick="payPaypal()">🌍 PAY WITH PAYPAL / CARD (Abroad)</button>
+<p style="text-align:center;font-size:12px;color:#888">Your number: 0788245106 | Secure & Instant</p>
+</div>
+
+<a class="whatsapp-float" id="waBtn" href="https://wa.me/254788245106">💬 WhatsApp Us</a>
+
+<script>
+let currentPrice=79;
+function selectPrice(price,name){
+currentPrice=price;
+document.getElementById('selectedPrice').innerText='$'+price+' - '+name;
+document.getElementById('serviceDisplay').value=name+' - $'+price;
+window.scrollTo({top:400,behavior:'smooth'});
+}
+function payPaypal(){window.open("https://www.paypal.me/YOURNAME/"+currentPrice,"_blank")}
+document.getElementById('waBtn').onclick=function(){
+let n=document.getElementById('name').value||'Client';
+this.href="https://wa.me/254788245106?text=Hello I want to book "+document.getElementById('selectedPrice').innerText+" Name:"+n;
+}
+</script>
+</body>
+  </html>
